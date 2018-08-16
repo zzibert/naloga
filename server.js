@@ -1,6 +1,9 @@
 let http = require('http')
+let https = require('https')
 let fs = require('fs')
 let path = require('path')
+let url = ''
+let client = ''
 
 let server = http.createServer((req, res) => {
     console.log('request: ' + req.url)
@@ -9,7 +12,8 @@ let server = http.createServer((req, res) => {
     if (filePath == './')
         filePath = './index.html'
     
-    else if (filePath == './data'){
+    else if (filePath.match('./data')){
+        url = filePath.split('data')[1]
         filePath = './data.json'
     }
 
@@ -23,7 +27,11 @@ let server = http.createServer((req, res) => {
     let contentType = mimeTypes[extname]
 
     if (filePath == './data.json'){
-        http.get('http://campaigns.celtra.com/developer-tasks/swipey-gallery/', resp => {
+        if (url.match('https'))
+            client = https
+        else
+            client = http
+        client.get(url, resp => {
             let body = ''
 
             resp.on('data', chunk => {

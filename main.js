@@ -36,7 +36,7 @@ class Gallery {
             if(http.readyState == 4 && http.status == 200)
                 self.fetchImages(JSON.parse(http.response)) 
         }
-        http.open('GET', './data', true)
+        http.open('GET', './data' + this.url, true)
         http.send()
     }
     fetchImages(imgs){
