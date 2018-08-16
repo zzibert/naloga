@@ -23,6 +23,19 @@ let server = http.createServer((req, res) => {
     }
     let contentType = mimeTypes[extname]
 
+    if (filePath == './data.js'){
+        http.get('http://campaigns.celtra.com/developer-tasks/swipey-gallery/', res => {
+            let body = ''
+
+            res.on('data', chunk => {
+                body += chunk
+            })
+
+            res.on('end', () => {
+                console.log(JSON.parse(body))
+            })
+        })
+    }
     fs.readFile(filePath, (err, content) => {
         if (err)
             res.end('there is an error')
