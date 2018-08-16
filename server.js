@@ -10,11 +10,12 @@ let server = http.createServer((req, res) => {
         filePath = './index.html'
     
     else if (filePath == './data'){
-        filePath = './data.js'
+        filePath = './data.txt'
     }
 
     let extname = String(path.extname(filePath)).toLowerCase()
     let mimeTypes = {
+        '.txt': 'text/plain',
         '.html': 'text/html',
         '.js': 'text/javascript',
         '.css': 'text/css',
@@ -23,7 +24,7 @@ let server = http.createServer((req, res) => {
     }
     let contentType = mimeTypes[extname]
 
-    if (filePath == './data.js'){
+    if (filePath == './data.txt'){
         http.get('http://campaigns.celtra.com/developer-tasks/swipey-gallery/', res => {
             let body = ''
 
@@ -32,7 +33,10 @@ let server = http.createServer((req, res) => {
             })
 
             res.on('end', () => {
-                console.log(JSON.parse(body))
+                fs.writeFile( filePath, body, (err) => {
+                    if (err) throw err;
+                    console.log('The file has been saved!');
+                  });
             })
         })
     }
