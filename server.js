@@ -10,12 +10,11 @@ let server = http.createServer((req, res) => {
         filePath = './index.html'
     
     else if (filePath == './data'){
-        filePath = './data.txt'
+        filePath = './data.js'
     }
 
     let extname = String(path.extname(filePath)).toLowerCase()
     let mimeTypes = {
-        '.txt': 'text/plain',
         '.html': 'text/html',
         '.js': 'text/javascript',
         '.css': 'text/css',
@@ -24,7 +23,7 @@ let server = http.createServer((req, res) => {
     }
     let contentType = mimeTypes[extname]
 
-    if (filePath == './data.txt'){
+    if (filePath == './data.js'){
         http.get('http://campaigns.celtra.com/developer-tasks/swipey-gallery/', res => {
             let body = ''
 
