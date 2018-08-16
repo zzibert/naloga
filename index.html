@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            padding: 40px;
+        }
+        .gallery {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery"></div>
+    <div class="gallery"></div>
+    <div class="gallery"></div>
+    <script src="main.js"></script>
+    <script>
+        let galleries = document.querySelectorAll('.gallery')
+        let A = new Gallery(galleries[0], {size: '40%', url: 'https://campaigns.celtra.com/developer-tasks/swipey-gallery/', looping: true})
+        let B = new Gallery(galleries[1], {size: '30%', url: 'https://campaigns.celtra.com/developer-tasks/swipey-gallery/', looping: false})
+        let C = new Gallery(galleries[2], {size: '20%', url: 'https://campaigns.celtra.com/developer-tasks/swipey-gallery/', looping: true})
+    </script>
+</body>
+</html>
