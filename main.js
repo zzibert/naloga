@@ -1,7 +1,7 @@
 class Gallery {
     constructor(container, {size, url, looping}){
         this.container = container
-        this.url = 'https://cors-anywhere.herokuapp.com/' + url
+        this.url = url
         this.looping = looping
         this.startX = null
         this.imageIndex = 0
